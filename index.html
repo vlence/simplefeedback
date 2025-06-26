@@ -16,17 +16,111 @@
                 </p>
         </noscript>
 
-        <div>
-                Press this button to toggle feedback mode.
-                <br>
-                <button type="button" class="fb-btn">
-                        Feedback
-                </button>
-        </div>
+        <section class="fb-app">
+                <h1>The Problem</h1>
+                
+                <p>
+                        If you want to collect feedback from your users you'd typically provide some kind
+                        of form that would require the user to describe, in detail, what was expected and
+                        what went wrong. This is pretty standard and is used across the industry. Sometimes
+                        it may not be so easy to describe it in words so affordances like image/video upload
+                        are made.
+                </p>
 
-        <main class="fb-app">
+                <p>
+                        Videos are probably the most useful as you can see, and maybe hear, what the problem
+                        is. The downside of videos are their size and the fact that you need to watch them in
+                        their entirety to fully understand what is the problem. Screenshots have their own
+                        problems. Users often need to highlight part(s) of the picture to make clear what
+                        they're talking about. Most users wouldn't bother with that. And last but not least,
+                        language. The user simply may not know how to articulate the problem clearly.
+                </p>
 
-        </main>
+                <p>The problem is two-fold:</p>
+
+                <ul>
+                        <li>How do we make it easy for the user to communicate the problem?</li>
+                        <li>How do we make it easy for the debugger to understand the problem?</li>
+                </ul>
+
+                <dialog id="fb-dialog" closedby="any">
+                        <form id="fb-form">
+                                <h1>Your Feedback</h1>
+
+                                <blockquote>
+                                        A dialog pops up asking for feedback! You can now use this form to tell the
+                                        website owner how frustrated you are about the spelling mistake.
+                                </blockquote>
+
+                                <div>
+                                        <label>
+                                                Please provide your feedback
+                                                <br>
+                                                <input type="text" name="feedback" required autofocus />
+                                        </label>
+                                </div>
+
+                                <p>For reference, this is what you clicked on</p>
+
+                                <div class="preview"></div>
+
+                                <div>
+                                        <button type="reset">Cancel</button>
+                                        <button type="submit">Submit</button>
+                                </div>
+                        </form>
+                </dialog>
+
+                <p>
+                        Websites are simply a tree of DOM nodes. We can click them. I propose if we allow
+                        the user to simply click at what's frustrating them in the page then half the
+                        confusion is resolved. Let's try it out. Click on "Toggle feedback mode".
+                </p>
+
+                <p>
+                        <label class="feedback-mode-toggle">
+                                <input type="checkbox">
+                                Toggle feedback mode
+                        </label>
+                </p>
+
+                <p>
+                        The following paragraph has a spelling mistake. It irks you. You must let the website
+                        owner know that there is a spelling mistake on the website. You might have noticed
+                        that the cursor changed into a crosshair after toggling "feedback mode".
+                        Click the paragraph below.
+                </p>
+
+                <p class="fb-target">
+                        This line has an intentional seplling mistake.
+                </p>
+
+                <p>
+                        If you're reading this I trust you have gone through the exercise of toggling feedback
+                        mode and clicking on the paragraph below. This simple example demonstrates that we can
+                        precisely target the part of the page that the user wants to provide feedback on and
+                        present a feedback form with a preview of what the user clicked on. We don't need to
+                        limit ourselves to textual input from the user; screenshots, videos and audio clips
+                        can be integrated too. The ability to click on a specific part of the page provides
+                        much more context for both the user and the debugger.
+                </p>
+        </section>
+
+        <footer>
+                <p>
+                        I hope you enjoyed reading through this website. If you read the source code and see
+                        how this was implemented click <a href="https://github.com/vlence/simplefeedback" target="_blank">here</a>.
+                </p>
+
+                <p>
+                        <small>
+                                Created by
+                                <a href="https://www.linkedin.com/in/vlence" target="_blank">
+                                        Victor Basumatary
+                                </a>
+                        </small>
+                </p>
+        </footer>
 
         <script src="/main.js"></script>
 </body>
