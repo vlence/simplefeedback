@@ -38,8 +38,14 @@ class Feedback {
         /** @type {string} The CSS class used by feedback targets. */
         #targetClass = 'fb-target'
 
-        /** @type {Function} An event listener. It is triggered when a feedback target is clicked. */
-        #listener
+        /** @type {Function} This event listener is triggered in the capture phase when a feedback target is clicked. */
+        #captureListener
+
+        /** @type {{[target: Node]: Function}?} Event listeners mapped to feedback targets. The event listener is called when the click event bubbles up to the target. */
+        #bubblingListeners
+
+        /** @type {NodeList?} The list of feedback targets */
+        #targets
 
         /** @type {boolean} True when listening for clicks on feedback targets. */
         #listening = false
@@ -86,7 +92,7 @@ class Feedback {
                  *
                  * @param {PointerEvent} ev
                  */
-                const listener = (ev) => {
+                const captureListener = (ev) => {
                         /** @type {HTMLElement} */
                         const target = ev.target
                         const targetIsHtmlElement = target instanceof HTMLElement
@@ -102,9 +108,22 @@ class Feedback {
                         if (typeof cb == 'function') cb(target)
                 }
 
-                this.#listener = listener
+                this.#captureListener = captureListener
+                this.#bubblingListeners = {}
+                this.#targets = this.#parent.querySelectorAll('.' + this.#targetClass)
 
-                this.#parent.addEventListener('click', listener, true)
+                this.#parent.addEventListener('click', captureListener, true)
+                this.#targets.forEach(target => {
+                        const listener = (ev) => {
+                                ev.stopImmediatePropagation()
+
+                                if (typeof cb == 'function') cb(target)
+                        }
+
+                        this.#bubblingListeners[target] = listener
+
+                        target.addEventListener('click', listener)
+                })
 
                 this.#parent.classList.add(this.#enabledClass)
 
@@ -115,7 +134,8 @@ class Feedback {
          * Stops listening for feedback.
          */
         stopListening() {
-                this.#parent.removeEventListener('click', this.#listener, true)
+                this.#parent.removeEventListener('click', this.#captureListener, true)
+                this.#targets.forEach(target => target.removeEventListener('click', this.#bubblingListeners[target]))
                 this.#parent.classList.remove(this.#enabledClass)
                 this.#listening = false
         }
