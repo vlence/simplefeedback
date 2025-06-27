@@ -47,6 +47,29 @@
                         <li>How do we make it easy for the user to communicate the problem?</li>
                         <li>How do we make it easy for the debugger to understand the problem?</li>
                 </ul>
+                <p>
+                        Websites are simply a tree of DOM nodes. We can click them. I propose if we allow
+                        the user to simply click at what's frustrating them in the page then half the
+                        confusion is resolved. Let's try it out. Click on "Toggle feedback mode".
+                </p>
+
+                <p>
+                        <label class="feedback-mode-toggle">
+                                <input type="checkbox">
+                                Toggle feedback mode
+                        </label>
+                </p>
+
+                <p>
+                        The following paragraph has a spelling mistake. It irks you. You must let the website
+                        owner know that there is a spelling mistake on the website. You might have noticed
+                        that the cursor changed into a crosshair after toggling "feedback mode".
+                        Click the paragraph below.
+                </p>
+
+                <p class="fb-target">
+                        This line has an intentional seplling mistake.
+                </p>
 
                 <dialog id="fb-dialog" closedby="any">
                         <form id="fb-form">
@@ -76,29 +99,6 @@
                         </form>
                 </dialog>
 
-                <p>
-                        Websites are simply a tree of DOM nodes. We can click them. I propose if we allow
-                        the user to simply click at what's frustrating them in the page then half the
-                        confusion is resolved. Let's try it out. Click on "Toggle feedback mode".
-                </p>
-
-                <p>
-                        <label class="feedback-mode-toggle">
-                                <input type="checkbox">
-                                Toggle feedback mode
-                        </label>
-                </p>
-
-                <p>
-                        The following paragraph has a spelling mistake. It irks you. You must let the website
-                        owner know that there is a spelling mistake on the website. You might have noticed
-                        that the cursor changed into a crosshair after toggling "feedback mode".
-                        Click the paragraph below.
-                </p>
-
-                <p class="fb-target">
-                        This line has an intentional seplling mistake.
-                </p>
 
                 <p>
                         If you're reading this I trust you have gone through the exercise of toggling feedback
