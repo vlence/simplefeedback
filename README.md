@@ -1,2 +1,3 @@
-# simplefeedback
-A simpler approach to collecting feedback from your website users.
+# Simple Feedback
+
+This project has been renamed to Pinpoint and [has been moved](https://vlence.github.io/pinpoint).
